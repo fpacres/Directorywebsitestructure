@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+  
+  /* Grayscale tokens from design library */
+  --grayscale-0: rgba(255, 255, 255, 1);
+  --grayscale-25: rgba(252, 252, 253, 1);
+  --grayscale-50: rgba(249, 250, 251, 1);
+  --grayscale-100: rgba(243, 244, 246, 1);
+  --grayscale-200: rgba(229, 231, 235, 1);
+  --grayscale-300: rgba(209, 213, 219, 1);
+  --grayscale-400: rgba(156, 163, 175, 1);
+  --grayscale-500: rgba(107, 114, 128, 1);
+  --grayscale-600: rgba(75, 85, 99, 1);
+  --grayscale-700: rgba(55, 65, 81, 1);
+  --grayscale-800: rgba(31, 41, 55, 1);
+  --grayscale-900: rgba(17, 24, 39, 1);
+  
+  /* Brand color tokens from design library */
+  --brand-dark: rgba(13, 13, 18, 1);
+  --brand-purple: rgba(91, 73, 233, 1);
+  --brand-red: rgba(223, 28, 65, 1);
+  --brand-cyan: rgba(51, 207, 255, 1);
+  --brand-teal: rgba(64, 196, 170, 1);
+  --brand-orange: rgba(255, 190, 76, 1);
+  --brand-pink: rgba(237, 130, 150, 1);
+  
+  /* Additional semantic color tokens */
+  --gray-muted: rgba(238, 239, 242, 1);
+  --gray-muted-foreground: rgba(129, 136, 152, 1);
+  --gray-border: rgba(223, 225, 231, 1);
+  --gray-sidebar-secondary: rgba(39, 40, 53, 1);
+  --gray-sidebar-accent: rgba(102, 109, 128, 1);
+  
+  /* Typography variables */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.5rem; /* 24px */
+  --text-xl: 3rem; /* 48px */
+  --text-2xl: 4rem; /* 64px */
+  --text-button: 1.25rem; /* 20px */
+  
+  /* Semantic tokens mapped to raw color tokens */
+  /* The default background color for the application. */
+  --background: var(--grayscale-25);
+  /* The default color for elements or text that appears on top of the background. */
+  --foreground: var(--brand-dark);
+  /* The background color for cards, modals, and other containers. */
+  --card: var(--grayscale-0);
+  /* The default color for text or elements that appear on top of cards, modals and other background containers. */
+  --card-foreground: var(--brand-dark);
+  /* The background color for dropdowns and tooltips. */
+  --popover: var(--grayscale-0);
+  /* The default color for text or elements that appear on top of dropdowns and tooltips. */
+  --popover-foreground: var(--brand-dark);
+  /* The primary color used for buttons, links, and other interactive elements. */
+  --primary: var(--brand-dark);
+  /* The default color for text or elements that appear on top of primary colored elements. */
+  --primary-foreground: var(--grayscale-0);
+  /* The secondary color used for secondary(but NOT-DESTRUCTIVE) buttons and interactive elements. */
+  --secondary: var(--grayscale-0);
+  /* The default color for text or elements that appear on top of secondary colored elements. */
+  --secondary-foreground: var(--brand-dark);
+  /* The muted color used for less prominent elements, such as disabled buttons or disabled text. */
+  --muted: var(--gray-muted);
+  /* The default color for text or elements that appear on top of muted colored elements. */
+  --muted-foreground: var(--gray-muted-foreground);
+  /* The accent color used for highlights, links, and other interactive elements. */
+  --accent: var(--brand-purple);
+  /* The default color for text or elements that appear on top of accent colored elements. */
+  --accent-foreground: var(--grayscale-0);
+  /* The color used for background in destructive actions, such as delete buttons or error messages. */
+  --destructive: var(--brand-red);
+  /* The default color for text or elements that appear on top of destructive colored elements. */
+  --destructive-foreground: var(--grayscale-0);
+  /* The default border color for elements such as inputs, buttons, and other containers. */
+  --border: var(--gray-border);
+  /* The default background color for input fields once the text has been filled. Should be either transparent or match the input-background. */
+  --input: var(--grayscale-0);
+  /* The default background color for input fields, text areas, and other input elements. */
+  --input-background: var(--grayscale-0);
+  /* The default font weight for medium text. */
+  --font-weight-medium: 500;
+  /* The default font weight for normal text. */
+  --font-weight-normal: 400;
+  /* The color for focus rings, outlines, and other focus indicators. */
+  --ring: var(--brand-purple);
+  /* Shadow for small elevations, such as cards or modals. */
+  --elevation-sm: 0px 1px 2px 0px rgba(13, 13, 18, 0.06);
+  /* Shadow for navigation and header elements. */
+  --elevation-nav: 0px 4px 8px -1px rgba(13, 13, 18, 0.02);
+  /* The color for chart elements, such as a bar or line in a chart. */
+  --chart-1: var(--brand-purple);
+  /* The color for another chart element, such as a bar or line in a chart. */
+  --chart-2: var(--brand-cyan);
+  /* The color for another chart element, such as a bar or line in a chart. */
+  --chart-3: var(--brand-teal);
+  /* The color for another chart element, such as a bar or line in a chart. */
+  --chart-4: var(--brand-orange);
+  /* The color for another chart element, such as a bar or line in a chart. */
+  --chart-5: var(--brand-pink);
+  /* The default border radius for elements such as buttons, tooltip, and other containers. */
+  --radius: 12px;
+  /* The border radius for larger buttons. */
+  --radius-button: 16px;
+  /* The border radius for cards and larger containers. */
+  --radius-card: 24px;
+  /* The background color for sidebars, navigation menus, and other persistent elements. */
+  --sidebar: var(--brand-dark);
+  /* The default color for text or elements that appear on top of sidebars, navigation menus, and other persistent elements. */
+  --sidebar-foreground: var(--grayscale-0);
+  /* The primary color used for buttons, links, and other interactive elements in sidebars and navigation menus. */
+  --sidebar-primary: var(--brand-purple);
+  /* The default color for text or elements that appear on top of primary colored elements in sidebars and navigation menus. */
+  --sidebar-primary-foreground: var(--grayscale-0);
+  /* The accent color used for highlights, links, and other interactive elements in sidebars and navigation menus. */
+  --sidebar-accent: var(--gray-sidebar-accent);
+  /* The default color for text or elements that appear on top of accent colored elements in sidebars and navigation menus. */
+  --sidebar-accent-foreground: var(--grayscale-0);
+  /* The default border color for elements in sidebars and navigation menus. */
+  --sidebar-border: var(--gray-sidebar-secondary);
+  /* The default color for focus rings, outlines, and other focus indicators in sidebars and navigation menus. */
+  --sidebar-ring: var(--brand-purple);
+}
+
+.dark {
+  --background: var(--brand-dark);
+  --foreground: var(--grayscale-0);
+  --card: var(--brand-dark);
+  --card-foreground: var(--grayscale-0);
+  --popover: var(--brand-dark);
+  --popover-foreground: var(--grayscale-0);
+  --primary: var(--grayscale-0);
+  --primary-foreground: var(--brand-dark);
+  --secondary: var(--gray-sidebar-secondary);
+  --secondary-foreground: var(--grayscale-0);
+  --muted: var(--gray-sidebar-secondary);
+  --muted-foreground: var(--gray-muted-foreground);
+  --accent: var(--brand-purple);
+  --accent-foreground: var(--grayscale-0);
+  --destructive: var(--brand-red);
+  --destructive-foreground: var(--grayscale-0);
+  --border: var(--gray-sidebar-secondary);
+  --input: var(--gray-sidebar-secondary);
+  --ring: var(--brand-purple);
+  --chart-1: var(--brand-purple);
+  --chart-2: var(--brand-cyan);
+  --chart-3: var(--brand-teal);
+  --chart-4: var(--brand-orange);
+  --chart-5: var(--brand-pink);
+  --sidebar: var(--brand-dark);
+  --sidebar-foreground: var(--grayscale-0);
+  --sidebar-primary: var(--brand-purple);
+  --sidebar-primary-foreground: var(--grayscale-0);
+  --sidebar-accent: var(--gray-sidebar-accent);
+  --sidebar-accent-foreground: var(--grayscale-0);
+  --sidebar-border: var(--gray-sidebar-secondary);
+  --sidebar-ring: var(--brand-purple);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  
+  /* Grayscale colors available for Tailwind */
+  --color-grayscale-0: var(--grayscale-0);
+  --color-grayscale-25: var(--grayscale-25);
+  --color-grayscale-50: var(--grayscale-50);
+  --color-grayscale-100: var(--grayscale-100);
+  --color-grayscale-200: var(--grayscale-200);
+  --color-grayscale-300: var(--grayscale-300);
+  --color-grayscale-400: var(--grayscale-400);
+  --color-grayscale-500: var(--grayscale-500);
+  --color-grayscale-600: var(--grayscale-600);
+  --color-grayscale-700: var(--grayscale-700);
+  --color-grayscale-800: var(--grayscale-800);
+  --color-grayscale-900: var(--grayscale-900);
+  
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius-button);
+  --radius-2xl: var(--radius-card);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/**
+ * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
+ */
+@layer base {
+  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+    h1 {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+      font-family: 'Inter', sans-serif;
+    }
+
+    h2 {
+      font-size: var(--text-xl);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+      font-family: 'Inter', sans-serif;
+    }
+
+    h3 {
+      font-size: var(--text-lg);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+      font-family: 'Inter', sans-serif;
+    }
+
+    h4 {
+      font-size: var(--text-button);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+      font-family: 'Inter', sans-serif;
+    }
+
+    p {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+      font-family: 'Inter', sans-serif;
+    }
+
+    label {
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+      font-family: 'Inter', sans-serif;
+    }
+
+    caption {
+      font-size: var(--text-xs);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+      font-family: 'Inter', sans-serif;
+    }
+
+    button {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+      font-family: 'Inter', sans-serif;
+    }
+
+    input {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+      font-family: 'Inter', sans-serif;
+    }
+  }
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
