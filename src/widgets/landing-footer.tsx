@@ -1,5 +1,4 @@
-import { FooterSocial } from "../shared/ui/footer-social";
-import { FooterLinkColumn } from "../shared/ui/footer-link-column";
+import { FooterSocial, FooterLinkColumn } from "../shared/ui/footer";
 
 export function LandingFooter() {
   const digitalToolsCol1 = [

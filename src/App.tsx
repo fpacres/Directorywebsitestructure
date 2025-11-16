@@ -1,14 +1,30 @@
 import { useState, useEffect } from 'react';
+import { AuthProvider } from './contexts/AuthContext';
+import { Toaster } from './components/ui/sonner';
+import { useCustomCode } from './utils/useCustomCode';
+import { useRedirects } from './utils/useRedirects';
 import HomePage from './pages/HomePage';
 import AIToolsPage from './pages/AIToolsPage';
 import DigitalToolsPage from './pages/DigitalToolsPage';
 import BlogPage from './pages/BlogPage';
 import AboutPage from './pages/AboutPage';
 import UnitConverterPage from './pages/UnitConverterPage';
-import InchToMeterPage from './pages/InchToMeterPage';
+import AdminSetupPage from './pages/admin/AdminSetupPage';
+import AdminLoginPage from './pages/admin/AdminLoginPage';
+import AdminDashboardPage from './pages/admin/AdminDashboardPage';
+import UnitConvertersAdminPage from './pages/admin/UnitConvertersAdminPage';
+import AdminSettingsPage from './pages/admin/AdminSettingsPage';
+import UnitConverterFormPage from './pages/admin/UnitConverterFormPage';
+import DebugDataPage from './pages/admin/DebugDataPage';
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  
+  // Inject custom code for public pages (automatically skips admin pages)
+  useCustomCode();
+  
+  // Handle URL redirects from admin settings
+  useRedirects();
 
   useEffect(() => {
     const handleLocationChange = () => {
@@ -27,6 +43,35 @@ export default function App() {
 
   // Route matching
   const renderPage = () => {
+    // Admin routes
+    if (currentPath.startsWith('/admin')) {
+      switch (currentPath) {
+        case '/admin/setup':
+          return <AdminSetupPage />;
+        case '/admin/login':
+          return <AdminLoginPage />;
+        case '/admin/dashboard':
+          return <AdminDashboardPage />;
+        case '/admin/unit-converters':
+          return <UnitConvertersAdminPage />;
+        case '/admin/unit-converters/new':
+          return <UnitConverterFormPage />;
+        case '/admin/settings':
+          return <AdminSettingsPage />;
+        case '/admin/debug-data':
+          return <DebugDataPage />;
+        default:
+          if (currentPath.startsWith('/admin/unit-converters/edit/')) {
+            return <UnitConverterFormPage />;
+          }
+          if (currentPath.startsWith('/admin/unit-converters/')) {
+            return <UnitConvertersAdminPage />;
+          }
+          return <AdminDashboardPage />;
+      }
+    }
+
+    // Public routes
     switch (currentPath) {
       case '/':
         return <HomePage />;
@@ -38,8 +83,6 @@ export default function App() {
         return <BlogPage />;
       case '/about':
         return <AboutPage />;
-      case '/tools/inch-to-meter':
-        return <InchToMeterPage />;
       case '/tools/unit-converter':
         return <UnitConverterPage />;
       default:
@@ -51,5 +94,10 @@ export default function App() {
     }
   };
 
-  return renderPage();
+  return (
+    <AuthProvider>
+      <Toaster position="top-center" />
+      {renderPage()}
+    </AuthProvider>
+  );
 }

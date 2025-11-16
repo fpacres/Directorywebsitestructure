@@ -6,18 +6,24 @@ import Footer from '../components/Footer';
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col gap-4 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
-      <NavMenu />
+    <div className="min-h-screen">
+      <div className="sticky top-0 z-50 w-full px-4 sm:px-6 lg:px-8 py-4" style={{ background: 'var(--background)' }}>
+        <div className="w-full max-w-[1440px] mx-auto">
+          <NavMenu />
+        </div>
+      </div>
       
-      <LandingHero />
-      
-      {/* Tool Categories Section */}
-      <ToolCategories />
-      
-      {/* AI Directory Section */}
-      <AICategories />
-      
-      <Footer />
+      <div className="flex flex-col gap-4 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <LandingHero />
+        
+        {/* Tool Categories Section */}
+        <ToolCategories />
+        
+        {/* AI Directory Section */}
+        <AICategories />
+        
+        <Footer />
+      </div>
     </div>
   );
 }

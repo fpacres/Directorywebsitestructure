@@ -1,5 +1,5 @@
 import heroBackground from 'figma:asset/974ed41b38c8036ad37cb7df9603a15b873551fa.png';
-import { FloatingCards } from "../shared/ui/floating-cards";
+import { FloatingCards } from "../shared/ui/cards";
 import { HeroSearch } from "../shared/ui/hero-search";
 
 export function LandingHero() {

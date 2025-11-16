@@ -77,6 +77,10 @@
   --destructive: var(--brand-red);
   /* The default color for text or elements that appear on top of destructive colored elements. */
   --destructive-foreground: var(--grayscale-0);
+  /* The color used for background in success actions, such as published badges or success messages. */
+  --success-background: rgba(220, 252, 231, 1);
+  /* The default color for text or elements that appear on top of success colored elements. */
+  --success-foreground: rgba(22, 101, 52, 1);
   /* The default border color for elements such as inputs, buttons, and other containers. */
   --border: var(--gray-border);
   /* The default background color for input fields once the text has been filled. Should be either transparent or match the input-background. */
@@ -233,30 +237,30 @@
  * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
  */
 @layer base {
-  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+  :where(:not(:has([class*=" text-"])):not(:has([class^="text-"]))) {
     h1 {
-      font-size: var(--text-2xl);
-      font-weight: var(--font-weight-normal);
-      line-height: 1.5;
-      font-family: 'Inter', sans-serif;
-    }
-
-    h2 {
       font-size: var(--text-xl);
       font-weight: var(--font-weight-normal);
       line-height: 1.5;
       font-family: 'Inter', sans-serif;
     }
 
-    h3 {
+    h2 {
       font-size: var(--text-lg);
       font-weight: var(--font-weight-normal);
       line-height: 1.5;
       font-family: 'Inter', sans-serif;
     }
 
-    h4 {
+    h3 {
       font-size: var(--text-button);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+      font-family: 'Inter', sans-serif;
+    }
+
+    h4 {
+      font-size: var(--text-base);
       font-weight: var(--font-weight-medium);
       line-height: 1.5;
       font-family: 'Inter', sans-serif;
@@ -314,4 +318,272 @@ html {
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
+}
+
+/* TipTap Editor Styles */
+.ProseMirror {
+  outline: none !important;
+}
+
+.ProseMirror:focus {
+  outline: none !important;
+  border: none !important;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: var(--muted-foreground);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Heading hierarchy with proper sizing */
+.ProseMirror h2,
+.tiptap-editor h2 {
+  font-size: 2rem; /* 32px */
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  font-family: 'Inter', sans-serif;
+  color: var(--foreground);
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.ProseMirror h2:first-child,
+.tiptap-editor h2:first-child {
+  margin-top: 0;
+}
+
+.ProseMirror h3,
+.tiptap-editor h3 {
+  font-size: 1.5rem; /* 24px */
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  font-family: 'Inter', sans-serif;
+  color: var(--foreground);
+  margin-top: 1.25em;
+  margin-bottom: 0.5em;
+}
+
+.ProseMirror h3:first-child,
+.tiptap-editor h3:first-child {
+  margin-top: 0;
+}
+
+.ProseMirror h4,
+.tiptap-editor h4 {
+  font-size: 1.25rem; /* 20px */
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  font-family: 'Inter', sans-serif;
+  color: var(--foreground);
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.ProseMirror h4:first-child,
+.tiptap-editor h4:first-child {
+  margin-top: 0;
+}
+
+.ProseMirror h5,
+.tiptap-editor h5 {
+  font-size: 1.125rem; /* 18px */
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  font-family: 'Inter', sans-serif;
+  color: var(--foreground);
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.ProseMirror h5:first-child,
+.tiptap-editor h5:first-child {
+  margin-top: 0;
+}
+
+.ProseMirror h6,
+.tiptap-editor h6 {
+  font-size: 1rem; /* 16px */
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  font-family: 'Inter', sans-serif;
+  color: var(--foreground);
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.ProseMirror h6:first-child,
+.tiptap-editor h6:first-child {
+  margin-top: 0;
+}
+
+.ProseMirror p {
+  color: var(--foreground);
+  margin-bottom: 1em;
+}
+
+.ProseMirror strong {
+  font-weight: var(--font-weight-medium);
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+  padding-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+.ProseMirror a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.ProseMirror blockquote {
+  border-left: 3px solid var(--border);
+  padding-left: 1em;
+  margin-left: 0;
+  font-style: italic;
+  color: var(--muted-foreground);
+}
+
+/* Rich Text Content Styles for Frontend Display */
+.rich-text-content h2 {
+  font-size: 2rem; /* 32px */
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  font-family: 'Inter', sans-serif;
+  color: var(--foreground);
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.rich-text-content h2:first-child {
+  margin-top: 0;
+}
+
+.rich-text-content h3 {
+  font-size: 1.5rem; /* 24px */
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  font-family: 'Inter', sans-serif;
+  color: var(--foreground);
+  margin-top: 1.25em;
+  margin-bottom: 0.5em;
+}
+
+.rich-text-content h3:first-child {
+  margin-top: 0;
+}
+
+.rich-text-content h4 {
+  font-size: 1.25rem; /* 20px */
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  font-family: 'Inter', sans-serif;
+  color: var(--foreground);
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.rich-text-content h4:first-child {
+  margin-top: 0;
+}
+
+.rich-text-content h5 {
+  font-size: 1.125rem; /* 18px */
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  font-family: 'Inter', sans-serif;
+  color: var(--foreground);
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.rich-text-content h5:first-child {
+  margin-top: 0;
+}
+
+.rich-text-content h6 {
+  font-size: 1rem; /* 16px */
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  font-family: 'Inter', sans-serif;
+  color: var(--foreground);
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.rich-text-content h6:first-child {
+  margin-top: 0;
+}
+
+.rich-text-content p {
+  color: var(--muted-foreground);
+  margin-bottom: 1em;
+}
+
+.rich-text-content p:last-child {
+  margin-bottom: 0;
+}
+
+.rich-text-content strong,
+.rich-text-content b {
+  font-weight: var(--font-weight-medium);
+  color: var(--foreground);
+}
+
+.rich-text-content em,
+.rich-text-content i {
+  font-style: italic;
+}
+
+.rich-text-content ul,
+.rich-text-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1em;
+  color: var(--muted-foreground);
+}
+
+.rich-text-content li {
+  margin-bottom: 0.5em;
+}
+
+.rich-text-content a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.rich-text-content a:hover {
+  opacity: 0.8;
+}
+
+.rich-text-content blockquote {
+  border-left: 3px solid var(--border);
+  padding-left: 1em;
+  margin-left: 0;
+  margin-bottom: 1em;
+  font-style: italic;
+  color: var(--muted-foreground);
+}
+
+.rich-text-content code {
+  background-color: var(--muted);
+  padding: 0.2em 0.4em;
+  border-radius: var(--radius);
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+.rich-text-content pre {
+  background-color: var(--muted);
+  padding: 1em;
+  border-radius: var(--radius);
+  overflow-x: auto;
+  margin-bottom: 1em;
+}
+
+.rich-text-content pre code {
+  background-color: transparent;
+  padding: 0;
 }
